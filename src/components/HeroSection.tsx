@@ -33,14 +33,14 @@ import {
           </div>
   
           {/* Grid Cards (Spanning Remaining Two Columns) */}
-          <div className="col-span-2 grid grid-cols-2 gap-6">
+          <div className="col-span-2 grid md:grid-cols-2 mt-24 sm:mt-16 py-8  gap-6">
             {industries.map((industry, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center justify-center bg-gray-900 text-white p-6 rounded-2xl shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl cursor-pointer w-full h-40"
+                className="flex flex-col md:flex-row items-center justify-center bg-gray-900 text-white p-6 rounded-2xl shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl cursor-pointer w-full h-40"
               >
                 <div className="text-4xl mb-3">{industry.icon}</div>
-                <h2 className="text-md font-semibold text-center">{industry.title}</h2>
+                <h2 className="text-md text-sm font-semibold text-center">{industry.title}</h2>
               </div>
             ))}
           </div>
