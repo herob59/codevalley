@@ -33,7 +33,7 @@ import {
           </div>
   
           {/* Grid Cards (Spanning Remaining Two Columns) */}
-          <div className="col-span-2 grid md:grid-cols-2 mt-24 sm:mt-16 py-8  gap-6">
+          <div className="col-span-2 grid md:grid-cols-2 mt-32 sm:mt-24 py-8 gap-6">
             {industries.map((industry, index) => (
               <div
                 key={index}
