@@ -34,7 +34,7 @@ import {
           {services.map((service, index) => (
             <div 
               key={index} 
-              className="flex flex-col items-center justify-center bg-black text-white p-2 rounded-full w-32 h-32 shadow-lg transition-transform transform hover:scale-110 hover:shadow-2xl cursor-pointer"
+              className="flex flex-col items-center justify-center bg-black text-white p-2 rounded-full w-32 h-32 shadow-lg transition-transform transform hover:scale-110 delay-150 duration-300 ease-in-out hover:-translate-y-1  hover:bg-indigo-500 hover:shadow-2xl cursor-pointer"
             >
               <div className="text-4xl text-blue-400">{service.icon}</div>
               <h3 className="text-sm font-semibold text-center mt-2">{service.title}</h3>
