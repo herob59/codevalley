@@ -24,7 +24,7 @@ import {
             Services and Solutions We Offer
           </h2>
           <p className="text-lg text-black  mt-4">
-            CodeValley provides a wide range of software development services and solutions. 
+            CodeValley technology provides a wide range of software development services and solutions. 
             We also design and implement software products for companies to propel their business forward.
           </p>
         </div>
