@@ -37,7 +37,7 @@ import {
             {industries.map((industry, index) => (
               <div
                 key={index}
-                className="flex flex-col md:flex-row items-center justify-center bg-gray-900 text-white p-6 rounded-2xl shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl cursor-pointer w-full h-40 gap-4"
+                className="flex flex-col md:flex-row items-center justify-center bg-gray-900 text-white p-6 rounded-2xl shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl delay-150 duration-300 ease-in-out hover:-translate-y-1  hover:bg-indigo-500 cursor-pointer w-full h-40 gap-4"
               >
                 <div className="text-4xl mb-3">{industry.icon}</div>
                 <h2 className="text-md text-sm font-semibold text-center">{industry.title}</h2>
