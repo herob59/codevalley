@@ -41,6 +41,7 @@ export default function Footer() {
         <div className="flex flex-col items-center md:items-start">
           <h3 className="text-lg font-semibold uppercase mb-4">Location</h3>
           <p className="text-gray-300">Ox Bowl Lake, Yenagoa, Bayelsa State.</p>
+          <p className="text-gray-300" >+234(0)8066838459</p>
         </div>
       </div>
 
