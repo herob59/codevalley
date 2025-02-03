@@ -1,36 +1,18 @@
 "use client";
-
-import { useState, useEffect } from "react";
-import { Menu } from "lucide-react";
+import { useState } from "react";
 import { FiMenu, FiX, FiSearch } from "react-icons/fi";
 import Link from "next/link";
 
 export default function Header() {
-  const [scrollUp, setScrollUp] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrollUp(currentScrollY < lastScrollY || currentScrollY < 50);
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
   return (
-    <header  className={`fixed top-0 left-0 w-full text-white shadow-md z-50 transition-all duration-300 ${
-      scrollUp ?  "bg-gray-800" : "bg-black" 
-    } shadow-lg`}
-  >
+    <header className="w-full bg-black text-white shadow-md fixed top-0 left-0 z-50">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
         
         {/* Logo */}
-        <Link href="/" className="text-2xl font-bold flex ">
+        <Link href="/" className="text-2xl font-bold">
         <img src='assets/hit.png' alt='hit' className=" mb-4" />
-          CodeValley
         </Link>
 
         {/* Desktop Navbar */}
@@ -58,23 +40,23 @@ export default function Header() {
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden text-white text-2xl" onClick={() => setIsMenuOpen(true)}>
+        <button className="md:hidden text-white text-2xl" onClick={() => setMenuOpen(true)}>
           <FiMenu />
         </button>
       </div>
 
       {/* Mobile Sidebar */}
-      <div className={`fixed top-0 left-0 h-full w-64 bg-black shadow-lg transform ${isMenuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform duration-300 md:hidden`}>
+      <div className={`fixed top-0 left-0 h-full w-64 bg-black shadow-lg transform ${menuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform duration-300 md:hidden`}>
         <div className="flex justify-between items-center px-6 py-4 border-b border-gray-700">
           <h2 className="text-2xl font-bold">Menu</h2>
-          <button className="text-white text-2xl" onClick={() => setIsMenuOpen(false)}>
+          <button className="text-white text-2xl" onClick={() => setMenuOpen(false)}>
             <FiX />
           </button>
         </div>
 
         <nav className="flex flex-col gap-6 mt-6 px-6">
           {["Home", "About", "Product", "Service", "Contact"].map((item, index) => (
-            <Link key={index} href={`/${item.toLowerCase()}`} className="text-lg hover:text-blue-400 transition" onClick={() => setIsMenuOpen(false)}>
+            <Link key={index} href={`/${item.toLowerCase()}`} className="text-lg hover:text-blue-400 transition" onClick={() => setMenuOpen(false)}>
               {item}
             </Link>
           ))}
