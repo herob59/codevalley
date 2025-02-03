@@ -1,4 +1,5 @@
-export default function handler(req: any, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { id: number; name: string; description: string; price: number; image: string; keyword: string[]; }[]): void; new(): any; }; }; }) {
+import { NextApiRequest, NextApiResponse } from 'next';
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const categories = [
       {
         id: 1,
@@ -43,5 +44,5 @@ export default function handler(req: any, res: { status: (arg0: number) => { ():
     ];
   
     res.status(200).json(categories);
+
   }
-  
