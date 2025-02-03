@@ -41,8 +41,9 @@ export default function ContactSection() {
               <iframe
                 className="w-full h-full min-h-[350px]"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.093897507524!2d-122.41941528468103!3d37.77492977975967!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c2f5f04b1%3A0x1f2e38bfdf9d018!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1616781285319!5m2!1sen!2sus"
-                allowFullScreen=""
+                allowFullScreen
                 loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
           </div>
