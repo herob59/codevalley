@@ -9,10 +9,12 @@ import  './globals.css'
 
 
 
+
 export default function Home() {
   return (
     <main id="main">
-     <Header />  
+     <Header /> 
+    
        <HeroSection/>     
        <Category />
        <ServiceSection />

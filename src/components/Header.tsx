@@ -1,82 +1,103 @@
-"use client";
+'use client'
 import { useState } from "react";
-import { FiMenu, FiX, FiSearch } from "react-icons/fi";
 import Link from "next/link";
+import { Menu, X, Search } from "lucide-react";
+
+
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   return (
-    <header className="w-full bg-gray-700 text-white shadow-md fixed top-0 left-0 z-50">
-      <div className="container mx-auto flex justify-between items-center py-4 px-6">
-        
-        {/* Logo */}
-        <Link href="/" className="text-2xl font-bold">
-        <img src='assets/hit.png' alt='hit' className=" mb-4" />
-        </Link>
-
-        {/* Desktop Navbar */}
-        <nav className="hidden md:flex items-center gap-8">
-          {["Home", "About", "Product", "Service", "Contact"].map((item, index) => (
-            <Link key={index} href={`/${item.toLowerCase()}`} className="hover:text-blue-400 transition">
-              {item}
-            </Link>
-          ))}
-        </nav>
-
-        {/* Search Bar & Get Started Button */}
-        <div className="hidden md:flex items-center space-x-4">
-          <div className="relative">
-            <input 
-              type="text" 
-              placeholder="Search..." 
-              className="px-4 py-2 rounded-full bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-blue-400"
-            />
-            <FiSearch className="absolute right-3 top-3 text-gray-400" />
-          </div>
-          <button className="bg-blue-500 px-6 py-2 rounded-full hover:bg-blue-600 transition">
-            Get Started
-          </button>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button className="md:hidden text-white text-2xl" onClick={() => setMenuOpen(true)}>
-          <FiMenu />
-        </button>
+    <header className="fixed top-0 w-full bg-gray-800 text-white shadow-md z-50">
+    <div className="container mx-auto flex justify-between items-center p-4">
+      {/* Logo */}
+      <div className="text-xl font-bold">
+        <img src='assets/hit.png' alt='hit' />
       </div>
 
-      {/* Mobile Sidebar */}
-      <div className={`fixed top-0 left-0 h-full w-64 bg-black shadow-lg transform ${menuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform duration-300 md:hidden`}>
-        <div className="flex justify-between items-center px-6 py-4 border-b border-gray-700">
-          <h2 className="text-2xl font-bold">Menu</h2>
-          <button className="text-white text-2xl" onClick={() => setMenuOpen(false)}>
-            <FiX />
-          </button>
-        </div>
+      {/* Desktop Navigation */}
+      <nav className="hidden md:flex">
+        <ul className="flex gap-6 list-none">
+          <li>
+            <Link href="/" className="hover:text-gray-400">Home</Link>
+          </li>
+          <li
+            className="relative"
+            onMouseEnter={() => setTimeout(() => setDropdownOpen(true), 300)}
+            onMouseLeave={() => setTimeout(() => setDropdownOpen(false), 300)}
+          >
+            <button className="hover:text-gray-400">About</button>
+            {dropdownOpen && (
+              <div className="absolute left-0 mt-2 w-48 bg-gray-700 shadow-lg rounded-md">
+                <Link href="/about" className="block px-4 py-2 hover:bg-gray-600">Our Story</Link>
+                <Link href="/team" className="block px-4 py-2 hover:bg-gray-600">Team</Link>
+                <Link href="/mission" className="block px-4 py-2 hover:bg-gray-600">Mission</Link>
+              </div>
+            )}
+          </li>
+          <li>
+            <Link href="/product" className="hover:text-gray-400">Product</Link>
+          </li>
+          <li>
+            <Link href="/service" className="hover:text-gray-400">Service</Link>
+          </li>
+          <li>
+            <Link href="/contact" className="hover:text-gray-400">Contact</Link>
+          </li>
+        </ul>
+      </nav>
 
-        <nav className="flex flex-col gap-6 mt-6 px-6">
-          {["Home", "About", "Product", "Service", "Contact"].map((item, index) => (
-            <Link key={index} href={`/${item.toLowerCase()}`} className="text-lg hover:text-blue-400 transition" onClick={() => setMenuOpen(false)}>
-              {item}
-            </Link>
-          ))}
-        </nav>
-
-        {/* Search Bar & Get Started Button in Mobile */}
-        <div className="px-6 mt-8">
-          <div className="relative">
-            <input 
-              type="text" 
-              placeholder="Search..." 
-              className="w-full px-4 py-2 rounded-full bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-blue-400"
-            />
-            <FiSearch className="absolute right-3 top-3 text-gray-400" />
-          </div>
-          <button className="w-full bg-blue-500 mt-4 px-6 py-2 rounded-full hover:bg-blue-600 transition">
-            Get Started
-          </button>
+      {/* Search Bar & Get Started */}
+      <div className="hidden md:flex items-center space-x-4">
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="bg-gray-700 text-white px-4 py-2 rounded-full focus:outline-none"
+          />
+          <Search className="absolute right-3 top-2 text-gray-400" size={18} />
         </div>
+        <button className="bg-blue-600 px-4 py-2 rounded-full">Get Started</button>
       </div>
-    </header>
+
+      {/* Mobile Menu Toggle */}
+      <button
+        className="md:hidden focus:outline-none"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        {menuOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+    </div>
+
+    {/* Mobile Navigation */}
+    <div className={`md:hidden fixed top-0 left-0 h-full w-64 bg-gray-900 p-4 transform ${menuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform duration-300 ease-in-out`}>
+      <button
+        className="absolute top-4 right-4 focus:outline-none"
+        onClick={() => setMenuOpen(false)}
+      >
+        <X size={24} className="text-white" />
+      </button>
+      <nav className="mt-10">
+        <ul className="list-none">
+          <li className="py-2 border-b border-gray-700">
+            <Link href="/" className="block text-white">Home</Link>
+          </li>
+          <li className="py-2 border-b border-gray-700">
+            <Link href="/about" className="block text-white">About</Link>
+          </li>
+          <li className="py-2 border-b border-gray-700">
+            <Link href="/product" className="block text-white">Product</Link>
+          </li>
+          <li className="py-2 border-b border-gray-700">
+            <Link href="/service" className="block text-white">Service</Link>
+          </li>
+          <li className="py-2 border-b border-gray-700">
+            <Link href="/contact" className="block text-white">Contact</Link>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
   );
 }
